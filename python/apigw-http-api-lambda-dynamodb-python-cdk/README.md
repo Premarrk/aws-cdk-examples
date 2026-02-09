@@ -6,6 +6,11 @@
 
 Creates an [AWS Lambda](https://aws.amazon.com/lambda/) function writing to [Amazon DynamoDB](https://aws.amazon.com/dynamodb/) and invoked by [Amazon API Gateway](https://aws.amazon.com/api-gateway/) REST API. 
 
+This implementation includes AWS Well-Architected Framework best practices:
+- **End-to-end tracing** with AWS X-Ray for monitoring request flows
+- **CloudWatch alarms** for proactive error detection
+- **VPC endpoints** for secure, private connectivity
+
 ![architecture](docs/architecture.png)
 
 ## Setup
@@ -84,6 +89,13 @@ You should get below response
 ```json
 {"message": "Successfully inserted data!"}
 ```
+
+### Monitoring with X-Ray
+After deployment, you can monitor request traces in the AWS X-Ray console:
+1. Navigate to AWS X-Ray console
+2. View the service map to see request flows between API Gateway → Lambda → DynamoDB
+3. Analyze traces to identify latency bottlenecks and errors
+4. Use CloudWatch alarms to receive notifications for Lambda errors and API Gateway 5xx responses
 
 ## Cleanup 
 Run below script to delete AWS resources created by this sample stack.
